@@ -1,5 +1,6 @@
 ---
 import { education } from "../data/portfolio.js";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <section class="section" id="education">
@@ -12,9 +13,15 @@ import { education } from "../data/portfolio.js";
     <div class="edu-grid">
       {education.map((e) => (
         <div class="edu-card card reveal">
-          <span class="edu-ic">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>
-          </span>
+          {e.logo ? (
+            <span class="edu-logo">
+              <img src={`${base}/${e.logo}`} alt={`${e.school} logo`} width="40" height="40" loading="lazy" />
+            </span>
+          ) : (
+            <span class="edu-ic">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>
+            </span>
+          )}
           <div class="edu-body">
             <h3 class="edu-school">{e.school}</h3>
             <p class="edu-degree">{e.degree}</p>
@@ -51,6 +58,23 @@ import { education } from "../data/portfolio.js";
     background: var(--gradient-soft);
     border: 1px solid var(--border);
     color: var(--accent);
+  }
+  .edu-logo {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+    background: #fff;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .edu-logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
   }
   .edu-school {
     font-size: 1.08rem;

@@ -1,5 +1,6 @@
 ---
 import { experience } from "../data/portfolio.js";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <section class="section" id="experience">
@@ -21,12 +22,21 @@ import { experience } from "../data/portfolio.js";
 
           <div class="tl-card card">
             <div class="tl-head">
-              <div>
-                <h3 class="tl-role">{job.role}</h3>
-                <p class="tl-company">
-                  <span class="tl-company-name">{job.company}</span>
-                  <span class="tl-loc">· {job.location}</span>
-                </p>
+              <div class="tl-head-left">
+                {job.logo ? (
+                  <span class="tl-logo">
+                    <img src={`${base}/${job.logo}`} alt={`${job.company} logo`} width="44" height="44" loading="lazy" />
+                  </span>
+                ) : (
+                  <span class="tl-logo tl-logo-fallback">{job.company.charAt(0)}</span>
+                )}
+                <div>
+                  <h3 class="tl-role">{job.role}</h3>
+                  <p class="tl-company">
+                    <span class="tl-company-name">{job.company}</span>
+                    <span class="tl-loc">· {job.location}</span>
+                  </p>
+                </div>
               </div>
               <span class={`tl-period ${job.current ? "now" : ""}`}>{job.period}</span>
             </div>
@@ -98,6 +108,37 @@ import { experience } from "../data/portfolio.js";
     align-items: flex-start;
     gap: 16px;
     margin-bottom: 16px;
+  }
+  .tl-head-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+  .tl-logo {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .tl-logo img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  .tl-logo-fallback {
+    background: var(--gradient);
+    color: #0a0a0f;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.25rem;
   }
   .tl-role {
     font-size: 1.18rem;

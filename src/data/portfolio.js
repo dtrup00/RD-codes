@@ -42,6 +42,7 @@ export const stats = [
 export const experience = [
   {
     company: "PhonePe",
+    logo: "logos/phonepe.png",
     role: "Product Solution Engineer",
     period: "May 2025 – Present",
     location: "Bengaluru, Karnataka",
@@ -56,6 +57,7 @@ export const experience = [
   },
   {
     company: "BookMyShow",
+    logo: "logos/bookmyshow.png",
     role: "Software Development Engineer - 1",
     period: "May 2022 – June 2024",
     location: "Mumbai, Maharashtra",
@@ -69,6 +71,7 @@ export const experience = [
   },
   {
     company: "Cognizant",
+    logo: "logos/cognizant.png",
     role: "Programmer Analyst Trainee",
     period: "Dec 2021 – March 2022",
     location: "Bengaluru, Karnataka",
@@ -80,6 +83,7 @@ export const experience = [
   },
   {
     company: "HighRadius",
+    logo: "logos/highradius.png",
     role: "Full-Stack Development Intern",
     period: "Jan 2021 – March 2021",
     location: "Bhubaneswar, Odisha",
@@ -163,12 +167,14 @@ export const certifications = [
 export const education = [
   {
     school: "Kalinga Institute of Industrial Technology",
+    logo: "logos/kiit.png",
     degree: "Bachelor of Technology — Information Technology",
     period: "July 2018 – June 2022",
     location: "Bhubaneswar, Odisha",
   },
   {
     school: "Hem Sheela Model School, Durgapur",
+    logo: "",
     degree: "High School",
     period: "2016 – 2018",
     location: "Durgapur, West Bengal",
