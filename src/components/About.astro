@@ -1,0 +1,142 @@
+---
+import { profile, contact } from "../data/portfolio.js";
+---
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-head" style="margin-bottom: 28px;">
+          <span class="eyebrow">About</span>
+          <h2 class="section-title">Engineering for the <span class="gradient-text">long run</span>.</h2>
+        </div>
+        {profile.about.map((p) => <p class="about-para">{p}</p>)}
+      </div>
+
+      <aside class="about-card reveal">
+        <div class="about-card-head">
+          <span class="brand-mark" style="width:46px;height:46px;">{profile.initials}</span>
+          <div>
+            <strong>{profile.name}</strong>
+            <span>{profile.role}</span>
+          </div>
+        </div>
+
+        <ul class="about-facts">
+          <li>
+            <span class="fact-ic">📍</span>
+            <div><span class="fact-k">Based in</span><span class="fact-v">{profile.location}</span></div>
+          </li>
+          <li>
+            <span class="fact-ic">💼</span>
+            <div><span class="fact-k">Currently</span><span class="fact-v">SDE @ PhonePe</span></div>
+          </li>
+          <li>
+            <span class="fact-ic">⚙️</span>
+            <div><span class="fact-k">Focus</span><span class="fact-v">Backend · Distributed Systems</span></div>
+          </li>
+          <li>
+            <span class="fact-ic">✉️</span>
+            <div><span class="fact-k">Email</span><a class="fact-v link" href={`mailto:${contact.email}`}>{contact.email}</a></div>
+          </li>
+        </ul>
+
+        <a href={`mailto:${contact.email}`} class="btn btn-primary about-card-btn">Let's work together</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .about-para {
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    font-size: 1.02rem;
+  }
+  .about-para:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    position: sticky;
+    top: 100px;
+  }
+  .about-card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 22px;
+  }
+  .about-card-head strong {
+    display: block;
+    font-size: 1.02rem;
+  }
+  .about-card-head span {
+    color: var(--text-dim);
+    font-size: 0.84rem;
+  }
+
+  .about-facts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 26px;
+  }
+  .about-facts li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .fact-ic {
+    font-size: 1.15rem;
+    width: 26px;
+    text-align: center;
+  }
+  .fact-k {
+    display: block;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+  .fact-v {
+    display: block;
+    font-size: 0.94rem;
+    color: var(--text);
+  }
+  .fact-v.link {
+    color: var(--accent);
+    word-break: break-all;
+  }
+  .fact-v.link:hover {
+    text-decoration: underline;
+  }
+
+  .about-card-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .about-card {
+      position: static;
+    }
+  }
+</style>

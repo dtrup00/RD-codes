@@ -1,0 +1,116 @@
+---
+import { projects, contact } from "../data/portfolio.js";
+---
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Projects</span>
+      <h2 class="section-title">Things I've <span class="gradient-text">built</span>.</h2>
+      <p class="section-subtitle">
+        A selection of systems and applications — from payment gateways to reconciliation engines.
+      </p>
+    </div>
+
+    <div class="proj-grid">
+      {projects.map((p) => (
+        <a href={p.link} target="_blank" rel="noopener" class="proj-card card reveal">
+          <div class="proj-top">
+            <span class="proj-folder">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+            </span>
+            <span class="proj-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </span>
+          </div>
+
+          <h3 class="proj-name">{p.name}</h3>
+          <p class="proj-stack">{p.stack}</p>
+          <p class="proj-desc">{p.description}</p>
+
+          <div class="proj-tags">
+            {p.tags.map((t) => <span class="chip">{t}</span>)}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="proj-cta reveal">
+      <p>Want to see more of my code?</p>
+      <a href={contact.github} target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.2 3.44 9.61 8.21 11.16.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.31-5.47-5.84 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.29-1.53 3.3-1.21 3.3-1.21.66 1.65.24 2.87.12 3.17.77.83 1.23 1.88 1.23 3.17 0 4.54-2.81 5.53-5.49 5.83.43.36.81 1.08.81 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.68.83.56A12.04 12.04 0 0 0 24 12.29C24 5.78 18.63.5 12 .5Z"/></svg>
+        Visit my GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .proj-card {
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+    cursor: pointer;
+  }
+  .proj-card:hover {
+    transform: translateY(-5px);
+  }
+  .proj-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .proj-folder {
+    color: var(--accent);
+  }
+  .proj-arrow {
+    color: var(--text-dim);
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .proj-card:hover .proj-arrow {
+    transform: translate(2px, -2px);
+    color: var(--accent);
+  }
+
+  .proj-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .proj-stack {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-3);
+    margin: 4px 0 14px;
+  }
+  .proj-desc {
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 18px;
+  }
+  .proj-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .proj-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 44px;
+    text-align: center;
+  }
+  .proj-cta p {
+    color: var(--text-muted);
+  }
+</style>

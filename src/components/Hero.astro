@@ -1,0 +1,259 @@
+---
+import { profile, contact, stats } from "../data/portfolio.js";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="hero-badge reveal">
+      <span class="status-dot"></span>
+      Available for impactful backend roles
+    </p>
+
+    <h1 class="hero-title reveal">
+      Hi, I'm <span class="gradient-text">{profile.name}</span>.<br />
+      I build <span class="hero-accent">backend systems</span> that scale.
+    </h1>
+
+    <p class="hero-sub reveal">{profile.headline}</p>
+
+    <p class="hero-meta reveal">
+      <span class="hero-role">{profile.role}</span>
+      <span class="dot-sep">•</span>
+      <span>{profile.tagline}</span>
+      <span class="dot-sep">•</span>
+      <span>{profile.location}</span>
+    </p>
+
+    <div class="hero-actions reveal">
+      <a href="#projects" class="btn btn-primary">
+        View my work
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href={`mailto:${contact.email}`} class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        Contact me
+      </a>
+      <a href={`${base}/${profile.resumeUrl}`} class="btn btn-ghost" download>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Resume
+      </a>
+    </div>
+
+    <div class="hero-socials reveal">
+      <a href={contact.github} target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.2 3.44 9.61 8.21 11.16.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.31-5.47-5.84 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.29-1.53 3.3-1.21 3.3-1.21.66 1.65.24 2.87.12 3.17.77.83 1.23 1.88 1.23 3.17 0 4.54-2.81 5.53-5.49 5.83.43.36.81 1.08.81 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.68.83.56A12.04 12.04 0 0 0 24 12.29C24 5.78 18.63.5 12 .5Z"/></svg>
+      </a>
+      <a href={contact.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+      </a>
+      <a href={`mailto:${contact.email}`} aria-label="Email">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-stats reveal">
+      {stats.map((s) => (
+        <div class="stat">
+          <span class="stat-value gradient-text">{s.value}</span>
+          <span class="stat-label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-cue" aria-label="Scroll down">
+    <span class="mouse"><span class="wheel"></span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+  }
+  .hero-inner {
+    text-align: center;
+    max-width: 860px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-3);
+    box-shadow: 0 0 0 0 rgba(54, 214, 195, 0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(54, 214, 195, 0.5); }
+    70% { box-shadow: 0 0 0 9px rgba(54, 214, 195, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(54, 214, 195, 0); }
+  }
+
+  .hero-title {
+    font-size: clamp(2.3rem, 6.5vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    transition-delay: 0.05s;
+  }
+  .hero-accent {
+    position: relative;
+    white-space: nowrap;
+  }
+  .hero-accent::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.08em;
+    height: 0.32em;
+    background: var(--gradient);
+    opacity: 0.22;
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.02rem, 2.2vw, 1.22rem);
+    color: var(--text-muted);
+    max-width: 660px;
+    margin: 0 auto 18px;
+    transition-delay: 0.1s;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 34px;
+    transition-delay: 0.15s;
+  }
+  .hero-role {
+    color: var(--accent);
+  }
+  .dot-sep {
+    opacity: 0.5;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 30px;
+    transition-delay: 0.2s;
+  }
+
+  .hero-socials {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 56px;
+    transition-delay: 0.25s;
+  }
+  .hero-socials a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .hero-socials a:hover {
+    transform: translateY(-3px);
+    color: var(--text);
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 26px;
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition-delay: 0.3s;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-value {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.76rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .mouse {
+    display: block;
+    width: 24px;
+    height: 38px;
+    border: 2px solid var(--border-strong);
+    border-radius: 14px;
+    position: relative;
+  }
+  .wheel {
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 7px;
+    border-radius: 4px;
+    background: var(--accent);
+    animation: wheel 1.6s infinite;
+  }
+  @keyframes wheel {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    35% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, 12px); }
+  }
+
+  @media (max-width: 640px) {
+    .hero-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 16px;
+    }
+    .scroll-cue {
+      display: none;
+    }
+  }
+</style>

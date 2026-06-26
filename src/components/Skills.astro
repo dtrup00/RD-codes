@@ -1,0 +1,92 @@
+---
+import { skills, certifications } from "../data/portfolio.js";
+---
+
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Skills</span>
+      <h2 class="section-title">My technical <span class="gradient-text">toolkit</span>.</h2>
+      <p class="section-subtitle">
+        The languages, frameworks, and tools I reach for when building reliable, scalable systems.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      {skills.map((group) => (
+        <div class="skill-card card reveal">
+          <h3 class="skill-cat">{group.category}</h3>
+          <div class="skill-items">
+            {group.items.map((item) => <span class="chip">{item}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="certs reveal">
+      <h3 class="certs-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+        Certifications
+      </h3>
+      <div class="certs-list">
+        {certifications.map((c) => <span class="cert-pill">{c}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .skill-card {
+    padding: 24px;
+  }
+  .skill-cat {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+  }
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .certs {
+    margin-top: 40px;
+    padding: 28px;
+    border-radius: var(--radius);
+    background: var(--gradient-soft);
+    border: 1px solid var(--border);
+  }
+  .certs-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .certs-title svg {
+    color: var(--accent-3);
+  }
+  .certs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .cert-pill {
+    padding: 8px 14px;
+    font-size: 0.86rem;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+</style>
