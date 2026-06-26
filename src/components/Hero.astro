@@ -5,6 +5,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 <section class="hero">
   <div class="container hero-inner">
+    <div class="hero-avatar reveal">
+      {profile.avatar ? (
+        <img src={`${base}/${profile.avatar}`} alt={profile.name} width="120" height="120" />
+      ) : (
+        <span class="hero-avatar-fallback">{profile.initials}</span>
+      )}
+      <span class="hero-avatar-ping"></span>
+    </div>
+
     <p class="hero-badge reveal">
       <span class="status-dot"></span>
       Available for impactful backend roles
@@ -79,6 +88,53 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     text-align: center;
     max-width: 860px;
   }
+
+  /* Avatar */
+  .hero-avatar {
+    position: relative;
+    width: 132px;
+    height: 132px;
+    margin: 0 auto 26px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--gradient);
+    padding: 4px;
+    box-shadow: var(--glow);
+  }
+  .hero-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg-soft);
+    display: block;
+  }
+  .hero-avatar-fallback {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--bg-soft);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: var(--text);
+  }
+  .hero-avatar-ping {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-3);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 0 rgba(54, 214, 195, 0.6);
+    animation: pulse 2s infinite;
+  }
+
   .hero-badge {
     display: inline-flex;
     align-items: center;

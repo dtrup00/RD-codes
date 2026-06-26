@@ -7,15 +7,18 @@
 export const profile = {
   name: "Rupam Dutta",
   initials: "RD",
-  role: "Software Development Engineer",
+  role: "Product Solution Engineer",
+  company: "PhonePe",
   tagline: "Backend Engineer · Distributed Systems · Fintech",
   location: "Bengaluru, Karnataka, India",
+  // Profile picture (place the image in /public). Leave "" to fall back to initials.
+  avatar: "DP.jpg",
   // Short hero line
   headline:
     "I design and build backend systems — microservices, APIs, and distributed architectures — that hold up when things get real.",
   // Longer about section
   about: [
-    "I'm a backend-focused Software Development Engineer with hands-on experience building scalable, high-throughput payment and reconciliation systems using Java, Spring Boot, and microservices.",
+    "I'm a Product Solution Engineer with a backend-focused background, building scalable, high-throughput payment and reconciliation systems using Java, Spring Boot, Python, and microservices.",
     "I think about failure modes before writing the first line of code. My path into engineering came through product solutions, which shaped how I approach every technical decision — I don't just ask \"how do we build this?\", I ask \"should we build this, and what does the user actually need?\"",
     "I write code that's boring in the best way: readable, testable, and easy to change when the business pivots. I value simplicity over cleverness, working software over perfect abstractions, and clear communication over jargon.",
   ],
