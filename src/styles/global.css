@@ -1,9 +1,24 @@
 /* =============================================================
-   GLOBAL STYLES — Dark & Modern Theme
+   GLOBAL STYLES — Dark & Light Theme (toggleable)
+   Dark is the default; [data-theme="light"] overrides it.
    ============================================================= */
 
 :root {
-  /* Palette */
+  /* ---- Shared accents (same hue family in both themes) ---- */
+  --accent: #6d8bff;
+  --accent-2: #a06bff;
+  --accent-3: #36d6c3;
+  --gradient: linear-gradient(135deg, #6d8bff 0%, #a06bff 55%, #36d6c3 120%);
+
+  /* ---- Shared tokens ---- */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --maxw: 1080px;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---- DARK palette (default) ---- */
   --bg: #0a0a0f;
   --bg-soft: #101018;
   --bg-card: rgba(255, 255, 255, 0.025);
@@ -15,20 +30,55 @@
   --text-muted: #a0a0b0;
   --text-dim: #6b6b7b;
 
-  /* Accents */
-  --accent: #6d8bff;
-  --accent-2: #a06bff;
-  --accent-3: #36d6c3;
-  --gradient: linear-gradient(135deg, #6d8bff 0%, #a06bff 55%, #36d6c3 120%);
   --gradient-soft: linear-gradient(135deg, rgba(109, 139, 255, 0.12), rgba(160, 107, 255, 0.12));
-
   --glow: 0 0 60px -15px rgba(109, 139, 255, 0.5);
-  --radius: 16px;
-  --radius-sm: 10px;
-  --maxw: 1080px;
 
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Theme-aware background effect opacities */
+  --glow-a: 0.16;
+  --glow-b: 0.14;
+  --glow-c: 0.10;
+  --grid-line: rgba(255, 255, 255, 0.018);
+  --nav-bg: rgba(10, 10, 15, 0.72);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.02);
+  color-scheme: dark;
+}
+
+/* ---- LIGHT palette ---- */
+[data-theme="light"] {
+  --bg: #f7f8fc;
+  --bg-soft: #eef0f7;
+  --bg-card: rgba(20, 22, 40, 0.025);
+  --bg-card-hover: rgba(20, 22, 40, 0.05);
+  --border: rgba(20, 22, 40, 0.1);
+  --border-strong: rgba(20, 22, 40, 0.18);
+
+  --text: #14161d;
+  --text-muted: #4a4d5e;
+  --text-dim: #7c7f90;
+
+  /* Slightly deepen accents so they read on light bg */
+  --accent: #4f6bff;
+  --accent-2: #8b4dff;
+  --accent-3: #11a99a;
+  --gradient: linear-gradient(135deg, #4f6bff 0%, #8b4dff 55%, #11a99a 120%);
+  --gradient-soft: linear-gradient(135deg, rgba(79, 107, 255, 0.1), rgba(139, 77, 255, 0.1));
+  --glow: 0 18px 50px -20px rgba(79, 107, 255, 0.45);
+
+  --glow-a: 0.1;
+  --glow-b: 0.09;
+  --glow-c: 0.07;
+  --grid-line: rgba(20, 22, 40, 0.03);
+  --nav-bg: rgba(247, 248, 252, 0.78);
+  --shadow-card: 0 6px 24px -16px rgba(20, 22, 40, 0.4);
+  color-scheme: light;
+}
+
+/* Smooth theme cross-fade */
+html.theme-ready body,
+html.theme-ready .card,
+html.theme-ready .chip,
+html.theme-ready .nav {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
 
 * {
@@ -59,10 +109,11 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(40rem 40rem at 78% -8%, rgba(160, 107, 255, 0.16), transparent 60%),
-    radial-gradient(38rem 38rem at 8% 8%, rgba(109, 139, 255, 0.14), transparent 60%),
-    radial-gradient(36rem 36rem at 50% 110%, rgba(54, 214, 195, 0.10), transparent 60%);
+    radial-gradient(40rem 40rem at 78% -8%, rgba(160, 107, 255, var(--glow-a)), transparent 60%),
+    radial-gradient(38rem 38rem at 8% 8%, rgba(109, 139, 255, var(--glow-b)), transparent 60%),
+    radial-gradient(36rem 36rem at 50% 110%, rgba(54, 214, 195, var(--glow-c)), transparent 60%);
   pointer-events: none;
+  transition: background 0.4s ease;
 }
 
 /* Subtle grid texture */
@@ -72,8 +123,8 @@ body::after {
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
   pointer-events: none;
@@ -102,11 +153,11 @@ img {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border-strong);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--accent);
 }
 
 /* ---------- Layout helpers ---------- */
@@ -205,11 +256,13 @@ img {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, background 0.3s ease;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover {
   border-color: var(--border-strong);
   background: var(--bg-card-hover);
+  box-shadow: var(--glow);
 }
 
 /* ---------- Chips / Tags ---------- */
